@@ -3,12 +3,12 @@ import { staticPlugin } from "@elysiajs/static";
 import { db, initDB } from "./db";
 
 /* =========================
-   ENV (Issue: Langsung di index)
-   Tugas: 
-   1. pindahkan ke file khusus (config/env.ts), 
-   2. gunakan `export const env = {...}` untuk menyimpan data env
-   3. tambahkan property DB_FILE berisi process.env.DB_FILE ke dalam `const env = {...}`
-   4. cek kondisi if (!process.env.DB_FILE) console.warn("⚠ DB_FILE not set, using default database.sqlite");
+    ENV (Issue: Langsung di index)
+    Tugas: 
+    1. pindahkan ke file khusus (config/env.ts), 
+    2. gunakan `export const env = {...}` untuk menyimpan data env
+    3. tambahkan property DB_FILE berisi process.env.DB_FILE ke dalam `const env = {...}`
+    4. cek kondisi if (!process.env.DB_FILE) console.warn("⚠ DB_FILE not set, using default database.sqlite");
 ========================= */
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -17,11 +17,11 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 console.log("Running in:", NODE_ENV);
 
 /* =========================
-   TYPES (Issue: Langsung di index)
-   Tugas: 
-    1. Pindahkan ke file khusus (user.type), dalam folder yang sesuai 
-    2. gunakan export interface ...
-    3. jadika id opsional -> id?: number
+    TYPES (Issue: Langsung di index)
+    Tugas: 
+      1. Pindahkan ke file khusus (user.type), dalam folder yang sesuai 
+      2. gunakan export interface ...
+      3. jadika id opsional -> id?: number
    ========================= */
 interface User {
   id: number;
@@ -30,8 +30,8 @@ interface User {
 }
 
 /* =========================
-   MODEL (Issue: Langsung di index)
-   Tugas:
+    MODEL (Issue: Langsung di index)
+    Tugas:
     1. Pindahkan ke file khusus (user.model), dalam folder yang sesuai 
     2. gunakan export class ...
     3. Property id jadikan opsional
@@ -53,11 +53,11 @@ class UserModel implements User {
 }
 
 /* =========================
-   REPOSITORY (SQLite)
-   Tugas:
-    1. Pindahkan ke file khusus (user.repository), dalam folder yang sesuai
-    2. gunakan export const ...
-    3. tambahkan delete(id: number) dengan query "DELETE FROM users WHERE id = ?"
+    REPOSITORY (SQLite)
+    Tugas:
+      1. Pindahkan ke file khusus (user.repository), dalam folder yang sesuai
+      2. gunakan export const ...
+      3. tambahkan delete(id: number) dengan query "DELETE FROM users WHERE id = ?"
 ========================= */
 const userRepository = {
   findAll(): UserModel[] {
@@ -77,11 +77,11 @@ const userRepository = {
 };
 
 /* =========================
-   SERVICE
-   Tugas:
-   1. pindahkan ke file khusus (user.service), dalam folder yang sesuai
-   2. import user.repository, user.model, & user.type
-   3. tambahkan delete(id: number) yang memanggil delete() dari userRepository
+    SERVICE
+    Tugas:
+    1. pindahkan ke file khusus (user.service), dalam folder yang sesuai
+    2. import user.repository, user.model, & user.type
+    3. tambahkan delete(id: number) yang memanggil delete() dari userRepository
 ========================= */
 const userService = {
   getAllUsers(): UserModel[] {
@@ -101,16 +101,16 @@ const userService = {
 };
 
 /* =========================
-   VIEW (SSR)
-   Tugas:
-    1. Letakkan di file khusus, dalam folder yang sesuai
-    2. Build Tailwind ke style.css, pastikan path benar.
-    3. Import UserModel
-    3. Ganti elemen dalam <body> jadi:
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-3xl font-bold text-blue-600 mb-6">
-        User Management (Clean Structure)
-      </h1>
+    VIEW (SSR)
+    Tugas:
+      1. Letakkan di file khusus, dalam folder yang sesuai
+      2. Build Tailwind ke style.css, pastikan path benar.
+      3. Import UserModel
+      3. Ganti elemen dalam <body> jadi:
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-3xl font-bold text-blue-600 mb-6">
+          User Management (Clean Structure)
+        </h1>
 
       <form method="POST" action="/create" class="mb-6 flex gap-2">
         <input name="name" placeholder="Name" class="border p-2 rounded w-full"/>
@@ -164,10 +164,10 @@ const userView = (users: UserModel[]) => `
 `;
 
 /* =========================
-   UTILS
-   Tugas:
-    1. Letakkan di file khusus (response.ts), dalam folder yang sesuai
-    2. Gunakan export const ...
+    UTILS
+    Tugas:
+      1. Letakkan di file khusus (response.ts), dalam folder yang sesuai
+      2. Gunakan export const ...
 ========================= */
 const htmlResponse = (html: string, status = 200) => {
   return new Response(html, {
@@ -185,8 +185,8 @@ const redirect = (url: string) =>
   });
 
 /* =========================
-   ROUTE + APP + SERVER
-   Tugas:
+    ROUTE + APP + SERVER
+    Tugas:
     1. Pisahkan jadi file `user.route.ts`, `app.ts`, & `server.ts`
     
     # User Route
@@ -241,7 +241,7 @@ initDB();
 
 
 /* =========================
-   Struktur Folder final harus seperti ini:
+    Struktur Folder final harus seperti ini:
     src/
     │
     ├── app.ts
